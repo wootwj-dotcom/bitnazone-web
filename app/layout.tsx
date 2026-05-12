@@ -17,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        <meta name="naver-site-verification" content="da3b146efb663badf63cdb976859f6f1e9dafb05" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
