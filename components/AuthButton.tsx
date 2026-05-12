@@ -7,24 +7,14 @@ import type { User } from '@supabase/supabase-js'
 
 export default function AuthButton() {
   const [user, setUser] = useState<User | null>(null)
-  const [nickname, setNickname] = useState<string | null>(null)
-
-  async function fetchNickname(uid: string) {
-    const { data } = await createClient()
-      .from('profiles').select('nickname').eq('id', uid).maybeSingle()
-    setNickname(data?.nickname ?? null)
-  }
 
   useEffect(() => {
     const supabase = createClient()
     supabase.auth.getUser().then(({ data }) => {
       setUser(data.user ?? null)
-      if (data.user) fetchNickname(data.user.id)
     })
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
       setUser(session?.user ?? null)
-      if (session?.user) fetchNickname(session.user.id)
-      else setNickname(null)
     })
     return () => subscription.unsubscribe()
   }, [])

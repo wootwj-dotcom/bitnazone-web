@@ -92,7 +92,7 @@ function AdminDashboard() {
       if (uid) userLikeCount.set(uid, (userLikeCount.get(uid) ?? 0) + 1)
     }
     if (userLikeCount.size > 0) {
-      const [topUid, topCount] = [...userLikeCount.entries()].sort((a, b) => b[1] - a[1])[0]
+      const [topUid, topCount] = Array.from(userLikeCount.entries()).sort((a, b) => b[1] - a[1])[0]
       const { data: prof } = await supabase.from('profiles').select('nickname').eq('id', topUid).maybeSingle()
       setMonthlyStar({ channel: prof?.nickname ?? topUid.slice(0, 8), count: topCount })
     } else {

@@ -39,7 +39,7 @@ export default function CommentSection({ videoId }: { videoId: string }) {
     const rows = (data ?? []) as CommentRow[]
     setComments(rows)
 
-    const ids = [...new Set(rows.map(r => r.user_id))]
+    const ids = Array.from(new Set(rows.map(r => r.user_id)))
     if (ids.length > 0) {
       const { data: profiles } = await supabase.from('profiles').select('id, nickname').in('id', ids)
       setNicknameMap(new Map((profiles ?? []).map(p => [p.id, p.nickname])))
