@@ -57,6 +57,8 @@ function AdminDashboard() {
   const [challengeText, setChallengeText] = useState('')
   const [challengeSaving, setChallengeSaving] = useState(false)
   const [savedMsg, setSavedMsg] = useState('')
+  const [cronLoading, setCronLoading] = useState(false)
+  const [cronMsg, setCronMsg] = useState('')
 
   const supabase = createClient()
 
@@ -133,6 +135,29 @@ function AdminDashboard() {
     setCouponLoading(false)
   }
 
+  async function triggerMonthlyCoupon() {
+    setCronLoading(true)
+    setCronMsg('')
+    try {
+      const res = await fetch('/api/admin/monthly-coupon', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: 'bitnazone2026' }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setCronMsg(`✅ ${data.email} 에 쿠폰 발급: ${data.coupon.code}`)
+        fetchAll()
+      } else {
+        setCronMsg(`⚠️ ${data.message || data.error}`)
+      }
+    } catch {
+      setCronMsg('오류가 발생했습니다')
+    }
+    setCronLoading(false)
+    setTimeout(() => setCronMsg(''), 6000)
+  }
+
   async function saveChallengeText() {
     setChallengeSaving(true)
     await supabase.from('site_config').upsert({ key: 'challenge_banner', value: challengeText })
@@ -195,17 +220,38 @@ function AdminDashboard() {
                   <p className="font-bold text-gray-800">@{monthlyStar.channel}</p>
                   <p className="text-xs text-gray-400 mt-0.5">이번 달 좋아요 {monthlyStar.count}개</p>
                 </div>
-                <button
-                  onClick={() => setStarInConfig(monthlyStar.channel)}
-                  className="px-3 py-2 rounded-xl text-sm font-semibold text-white"
-                  style={{ background: 'linear-gradient(135deg, #FFD700, #FF69B4)' }}
-                >
-                  스타 설정
-                </button>
+                <div className="flex flex-col gap-2 items-end">
+                  <button
+                    onClick={() => setStarInConfig(monthlyStar.channel)}
+                    className="px-3 py-2 rounded-xl text-sm font-semibold text-white"
+                    style={{ background: 'linear-gradient(135deg, #FFD700, #FF69B4)' }}
+                  >
+                    스타 설정
+                  </button>
+                  <button
+                    onClick={triggerMonthlyCoupon}
+                    disabled={cronLoading}
+                    className="px-3 py-2 rounded-xl text-xs font-semibold text-white disabled:opacity-50"
+                    style={{ background: 'linear-gradient(135deg, #FF69B4, #9B59B6)' }}
+                  >
+                    {cronLoading ? '발급 중...' : '🎟 쿠폰 발급'}
+                  </button>
+                </div>
               </div>
             ) : (
-              <p className="text-sm text-gray-400 text-center py-2">이번 달 좋아요 데이터가 없습니다</p>
+                <div className="flex items-center justify-between">
+                <p className="text-sm text-gray-400">이번 달 좋아요 데이터가 없습니다</p>
+                <button
+                  onClick={triggerMonthlyCoupon}
+                  disabled={cronLoading}
+                  className="px-3 py-2 rounded-xl text-xs font-semibold text-white disabled:opacity-50"
+                  style={{ background: 'linear-gradient(135deg, #FF69B4, #9B59B6)' }}
+                >
+                  {cronLoading ? '발급 중...' : '🎟 지난달 쿠폰 발급'}
+                </button>
+              </div>
             )}
+          {cronMsg && <p className="text-xs text-center mt-2" style={{ color: cronMsg.startsWith('✅') ? '#22c55e' : '#f59e0b' }}>{cronMsg}</p>}
           </div>
         </section>
 
