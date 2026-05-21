@@ -13,8 +13,8 @@ const FEATURES = [
   },
   {
     emoji: '✨',
-    title: 'SNS 공유 & 빛나존 등록',
-    desc: '#빛나존 태그로 공유하면 커뮤니티에 자동 노출',
+    title: 'SNS 공유 & 빛나 Zone 등록',
+    desc: '#BitnaZone 태그로 공유하면 커뮤니티에 자동 노출',
   },
 ]
 
@@ -28,12 +28,13 @@ export default function HeroSection() {
 
         {/* Headline */}
         <h1 className="font-black text-2xl leading-tight text-gray-800">
-          {COMPANY.serviceName}
+          {COMPANY.serviceNameEn}
           <span className="text-gray-400 font-normal"> — </span>
           셀프 크리에이터 존
         </h1>
-        <p className="mt-2 text-sm text-gray-500">
-          {COMPANY.slogan}&nbsp;·&nbsp;{COMPANY.sloganEn}
+        <p className="mt-2 text-sm text-gray-500 leading-relaxed">
+          {COMPANY.slogan}<br />
+          {COMPANY.sloganEn}
         </p>
 
         {/* Feature cards */}
@@ -57,9 +58,11 @@ export default function HeroSection() {
             className="px-5 py-2.5 rounded-full text-sm font-bold text-white cursor-not-allowed opacity-50"
             style={{ background: 'linear-gradient(135deg, #FF69B4, #9B59B6)' }}
           >
-            가까운 빛나존 찾기
+            가까운 빛나 Zone 찾기
           </button>
-          <p className="text-xs text-gray-400">빛나존 1호점 오픈 준비 중</p>
+          <p className="text-xs text-gray-400">
+            1호점 &apos;{COMPANY.firstStore.name}&apos; 오픈 준비 중
+          </p>
         </div>
 
       </div>

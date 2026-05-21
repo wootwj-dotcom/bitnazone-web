@@ -4,7 +4,7 @@
 매장 키오스크(kono-recording 프로젝트)에서 손님이 촬영한 영상을 SNS에 올린 후,
 bitnazone.com에 링크를 등록하면 커뮤니티 피드에 임베드로 노출되는 플랫폼.
 
-- 브랜드: Bitna Zone ("찬란한 순간을 담는다 / Anyone can shine.")
+- 브랜드: Bitna Zone ("찬란한 순간을 담는다 / This moment, you're radiant.")
 - SNS: @bitnazone
 - 도메인: bitnazone.com (Vercel 배포)
 - 운영자: 비기술자 1인 운영

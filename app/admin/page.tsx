@@ -169,7 +169,7 @@ function AdminDashboard() {
   function mailtoLink(coupon: Coupon) {
     const subject = encodeURIComponent(`[Bitna Zone] 이달의 스타 무료 이용권 🎉`)
     const body = encodeURIComponent(
-      `안녕하세요! Bitna Zone 이달의 스타로 선정되셨습니다 🌟\n\n무료 이용권 코드: ${coupon.code}\n이용 시간: ${coupon.minutes}분\n\n빛나존 포토부스 이용 시 코드를 입력해주세요.\nbitnazone.com`
+      `안녕하세요! Bitna Zone 이달의 스타로 선정되셨습니다 🌟\n\n무료 이용권 코드: ${coupon.code}\n이용 시간: ${coupon.minutes}분\n\n빛나 Zone 포토부스 이용 시 코드를 입력해주세요.\nbitnazone.com`
     )
     return `mailto:${coupon.user_email}?subject=${subject}&body=${body}`
   }

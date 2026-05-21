@@ -7,7 +7,7 @@ import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: "Bitna Zone — 찬란한 순간을 담는다",
-  description: "Anyone can shine. Bitna Zone 커뮤니티 영상 피드",
+  description: "This moment, you're radiant. Bitna Zone 커뮤니티 영상 피드",
 };
 
 export default function RootLayout({
