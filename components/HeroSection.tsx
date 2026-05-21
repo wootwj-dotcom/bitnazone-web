@@ -61,7 +61,7 @@ export default function HeroSection() {
             가까운 빛나 Zone 찾기
           </button>
           <p className="text-xs text-gray-400">
-            1호점 &apos;{COMPANY.firstStore.name}&apos;
+            1호점 {COMPANY.firstStore.name}
           </p>
         </div>
 
