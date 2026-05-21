@@ -21,6 +21,7 @@ export const COMPANY = {
     shortName: "영등포구청점",
     status: "오픈 준비 중",
     district: "서울 영등포구",
+    address: "서울 영등포구 당산로30길 5 동선빌딩 B101호",
     type: "Bitna Sing", // 코인노래방 큰방
   },
 } as const;
