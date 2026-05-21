@@ -3,6 +3,7 @@ import "./globals.css";
 import Link from 'next/link'
 import Image from 'next/image'
 import AuthButton from '@/components/AuthButton'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: "Bitna Zone — 찬란한 순간을 담는다",
@@ -55,12 +56,7 @@ export default function RootLayout({
 
         {children}
 
-        <footer className="pb-32 pt-6 text-center text-xs text-gray-400">
-          문의:{' '}
-          <a href="mailto:wootwj@gmail.com" className="underline hover:text-pink-400">
-            wootwj@gmail.com
-          </a>
-        </footer>
+        <Footer />
       </body>
     </html>
   );

@@ -3,6 +3,7 @@ import VideoCard from '@/components/VideoCard'
 import VideoFeed from '@/components/VideoFeed'
 import ChallengeBanner from '@/components/ChallengeBanner'
 import MonthlyStarBanner from '@/components/MonthlyStarBanner'
+import HeroSection from '@/components/HeroSection'
 
 export const revalidate = 60
 
@@ -34,6 +35,7 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-dvh pb-28">
+      <HeroSection />
       <div className="max-w-[430px] mx-auto px-4 pt-6">
 
         <ChallengeBanner />
